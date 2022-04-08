@@ -1,0 +1,19 @@
+getgenv().ProximityPickUp = true
+while wait(.5) do
+ if getgenv().ProximityPickUp then
+   local hrp = game:GetService("Players").LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+   for i,v in pairs(workspace.Entities:GetChildren()) do
+      if v.Name == "ToolModel" then
+       if (v.Handle.CFrame.p - hrp.CFrame.p).magnitude < 11 then
+           --[[v:WaitForChild("ToolBG")
+           v.ToolBG:WaitForChild("ToolName")
+           warn(v.Handle.ToolBG.ToolName.Value.." in range")]]
+           for i=1,10 do
+           wait()
+           game:GetService("ReplicatedStorage")["_CS.Events"].Dropper:FireServer(v, "PickUp")
+           end
+       end
+      end
+   end
+  end
+end
